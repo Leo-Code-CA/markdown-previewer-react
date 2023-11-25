@@ -1,12 +1,17 @@
-export default function Previewer({ markdown }) {
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
+
+export default function Previewer({ markdown, neon, setneon }) {
 
     return (
-        <article className="content content--previewer">
+        <article className={neon === "previewer" ? "content content--previewer neon" : "content content--previewer"}>
             <h2>Previewer</h2>
-            <div>
-                {markdown}
+            <p className='content__subheading'>Your markdown renders here.</p>
+            <div className="content__render">
+                <Markdown remarkPlugins={[remarkGfm]}>
+                    {markdown}
+                </Markdown>
             </div>
-            
         </article>
     );
 }

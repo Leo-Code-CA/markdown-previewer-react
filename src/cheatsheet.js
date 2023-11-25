@@ -1,28 +1,31 @@
 import { useState } from "react";
 
-export default function CheatSheet({ syntax }) {
+export default function CheatSheet({ syntax, neon, setneon, prevstate }) {
 
     const [filterTable, setFilterTable] = useState("");
 
     return (
-        <div className="content content--cheatsheet">
+        <div className={neon === "cheatsheet" ? "content content--cheatsheet neon" : "content content--cheatsheet"}>
             <h2>Cheat Sheet</h2>
-            <SearchBar filtertable={filterTable} setfiltertable={setFilterTable}/>
+            <p className='content__subheading'>Just in case you need it.</p>
+            <SearchBar filtertable={filterTable} setfiltertable={setFilterTable} setneon={setneon} prevstate={prevstate}/>
             <Table syntax={syntax} filtertable={filterTable}/>
         </div>
     );
 }
 
-function SearchBar({ filtertable, setfiltertable }) {
+function SearchBar({ filtertable, setfiltertable, setneon, prevstate }) {
 
     return (
         <>
             <input 
             type="text" 
             aria-label="search" 
-            placeholder="search..."
+            placeholder="Search..."
             value={filtertable}
-            onChange={e => setfiltertable(e.target.value)}>
+            onChange={e => setfiltertable(e.target.value)}
+            onFocus={() => setneon("cheatsheet")}
+            onBlur={prevstate}>
             </input>
         </>
     );
@@ -31,14 +34,14 @@ function SearchBar({ filtertable, setfiltertable }) {
 function Table({ syntax, filtertable }) {
 
     return (
-        <table>
+        <div>
 
             {filtertable !== "" &&
-            <>
+            <table>
             <thead>
                 <tr>
-                    <th>element</th>
-                    <th>markdown syntax</th>
+                    <th>Element</th>
+                    <th>Markdown Syntax</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,10 +61,10 @@ function Table({ syntax, filtertable }) {
                     }
                 })}
             </tbody>
-            </>
+            </table>
             }
 
 
-        </table>
+        </div>
     );
 }
