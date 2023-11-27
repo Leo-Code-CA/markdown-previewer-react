@@ -35,36 +35,27 @@ function Table({ syntax, filtertable }) {
 
     return (
         <div>
-
             {filtertable !== "" &&
             <table>
-            <thead>
-                <tr>
-                    <th>Element</th>
-                    <th>Markdown Syntax</th>
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Markdown Syntax</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {syntax.map(item => item.element.toLowerCase().indexOf(filtertable.toLowerCase()) !== -1 && 
+                (<tr>
+                    <td>{item.element}</td>
+                    <td>
+                        {item.syntax.map(example => <p>{example}</p>)}
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {syntax.map(item => {
-                    if (item.element.toLowerCase().indexOf(filtertable.toLowerCase()) === -1) {
-                        console.log(item.element.toLowerCase());
-                        return;
-                    } else {
-                        return (
-                            <tr>
-                                <td>{item.element}</td>
-                                <td>
-                                    {item.syntax.map(example => <p>{example}</p>)}
-                                </td>
-                            </tr>
-                        )
-                    }
-                })}
-            </tbody>
+                )
+                )}
+                </tbody>
             </table>
             }
-
-
         </div>
     );
 }

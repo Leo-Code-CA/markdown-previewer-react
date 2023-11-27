@@ -2,15 +2,15 @@ import CheatSheet from "./cheatsheet";
 import Editor from "./editor";
 import Header from "./header";
 import Previewer from "./previewer";
-import { markdownPresentation } from "./presentation";
+import { PRESENTATION } from "./presentation";
 import { useState } from "react";
 
 export default function MarkdownPreviewer({ syntax, neon, setNeon }) {
 
-    const [markdown, setMarkdown] = useState(markdownPresentation);
+    const [markdown, setMarkdown] = useState(PRESENTATION);
 
     const handlePreviewerState = () => {
-        return markdown != "" ? setNeon("previewer") : setNeon("main");
+        return markdown !== "" ? setNeon("previewer") : setNeon("main");
     }
 
     return (
@@ -27,7 +27,6 @@ export default function MarkdownPreviewer({ syntax, neon, setNeon }) {
                 <Previewer 
                 markdown={markdown}
                 neon={neon}
-                setneon={setNeon}
                 />
                 <CheatSheet 
                 syntax={syntax}

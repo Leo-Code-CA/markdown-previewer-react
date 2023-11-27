@@ -9,9 +9,8 @@ export const MARKDOWNSYNTAX = [
     {element: 'code', syntax: ['`code`']},
     {element: 'link', syntax: ['[title](https://www.example.com)']},
     {element: 'image', syntax: ['![alt text](image.jpg)']},
-    {element: 'table', syntax: ['| Syntax | Description |', '| ----------- | ----------- |', '| Header | Title |', '| Paragraph | Text |']},
+    {element: 'table', syntax: ['My first header | My second header', '------------ | -------------', 'Content one | Content two', 'Content three | Content four']},
     {element: 'code block', syntax: ['```', '{', '"firstName": "John",', '"lastName": "Smith",', '"age": 25', '}', '```']},
-    {element: 'footnote', syntax: ['Here\'s a sentence with a footnote. [^1]', '[^1]: This is the footnote.']},
     {element: 'strikethrough', syntax: ['~~The world is flat.~~']},
     {element: 'task list', syntax: ['- [x] Write the press release', '- [ ] Update the website', '- [ ] Contact the media']}
-] 
+];
